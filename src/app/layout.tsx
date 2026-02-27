@@ -29,7 +29,6 @@ export const metadata: Metadata = {
   ],
   creator: "Soumojit Banerjee",
   publisher: "QuickPal",
-  metadataBase: new URL("https://quickpal.ai"),
   icons: {
     icon: "/logo.svg",
   },

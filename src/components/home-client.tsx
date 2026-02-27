@@ -1,12 +1,39 @@
 "use client";
 
 import { ModeToggle } from "@/components/mode-toggle";
-import { motion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "./ui/button";
+import { useEffect, useRef, useState } from "react";
+import { IconLayoutDashboard, IconLogout } from "@tabler/icons-react";
 
-export default function HomeClient() {
+export default function HomeClient({ email }: { email: string | null }) {
+
+    const [open, setOpen] = useState(false);
+
+    const handleLogin = () => {
+        window.location.href = "/api/auth/login";
+    }
+
+    const firstLetter = email ? email.charAt(0).toUpperCase() : "U";
+
+    const popupRef = useRef<HTMLDivElement>(null);
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (popupRef.current && !popupRef.current.contains(event.target as Node)) {
+                setOpen(false);
+            }
+        };
+        if (open) {
+            document.addEventListener("mousedown", handleClickOutside);
+        } else {
+            document.removeEventListener("mousedown", handleClickOutside);
+        }
+    }, [open]);
+
+
+
     return (
         <div className="min-h-screen overflow-x-hidden">
             {/* NAVBAR */}
@@ -55,20 +82,66 @@ export default function HomeClient() {
                         <div className="flex items-center gap-3">
                             <ModeToggle />
 
-                            <Button
-                                variant="outline"
-                                className="text-sm font-medium"
-                            >
-                                Login
-                            </Button>
+                            {email ? (<div className="relative" ref={popupRef}>
+                                <Button className="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-sm font-medium"
+                                    onClick={() => setOpen(!open)}
+                                >
+                                    {firstLetter}
+                                </Button>
+                                <AnimatePresence>
+                                    {open && (
+                                        <motion.div
+                                            initial={{ opacity: 0, y: 8, scale: 0.98 }}
+                                            animate={{ opacity: 1, y: 0, scale: 1 }}
+                                            exit={{ opacity: 0, y: 8, scale: 0.98 }}
+                                            transition={{ duration: 0.18, ease: "easeOut" }}
+                                            className="absolute right-0 mt-3 w-52 
+                 rounded-xl border border-border/50 
+                 bg-background/95 backdrop-blur-xl 
+                 shadow-xl p-2"
+                                        >
+                                            <div className="flex flex-col gap-1">
 
-                            <Button
-                                className="px-5 shadow-sm hover:shadow-md transition-shadow"
-                            >
-                                Get Started
-                            </Button>
+                                                {/* Dashboard */}
+                                                <Button
+                                                    variant="ghost"
+                                                    className="justify-start gap-2 rounded-lg px-3 py-2 text-sm font-medium hover:bg-muted"
+                                                >
+                                                    <IconLayoutDashboard className="w-4 h-4 " />
+                                                    <span>Dashboard</span>
+                                                </Button>
+
+                                                <div className="h-px bg-border/50 my-1" />
+
+                                                {/* Logout */}
+                                                <Button
+                                                    variant="ghost"
+                                                    className="justify-start gap-2 rounded-lg px-3 py-2 text-sm font-medium 
+                     text-red-500 hover:bg-red-500/10 hover:text-red-600"
+                                                >
+                                                    <IconLogout className="w-4 h-4" />
+                                                    <span>Logout</span>
+                                                </Button>
+
+                                            </div>
+                                        </motion.div>
+                                    )}
+                                </AnimatePresence>
+                            </div>) : (<>
+                                <Button
+                                    variant="outline"
+                                    className="text-sm font-medium"
+                                    onClick={handleLogin}
+                                >
+                                    Login
+                                </Button><Button
+                                    className="px-5 shadow-sm hover:shadow-md transition-shadow"
+                                    onClick={handleLogin}
+                                >
+                                    Get Started
+                                </Button>
+                            </>)}
                         </div>
-
                     </div>
                 </div>
             </motion.header>
