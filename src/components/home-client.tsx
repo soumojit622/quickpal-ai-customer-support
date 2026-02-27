@@ -144,11 +144,14 @@ export default function HomeClient({ email }: { email: string | null }) {
 
                                                 {/* Dashboard */}
                                                 <Button
+                                                    asChild
                                                     variant="ghost"
                                                     className="justify-start gap-2 rounded-lg px-3 py-2 text-sm font-medium hover:bg-muted"
                                                 >
-                                                    <IconLayoutDashboard className="w-4 h-4 " />
-                                                    <span>Dashboard</span>
+                                                    <Link href="/dashboard">
+                                                        <IconLayoutDashboard className="w-4 h-4" />
+                                                        <span>Dashboard</span>
+                                                    </Link>
                                                 </Button>
 
                                                 <div className="h-px bg-border/50 my-1" />
