@@ -7,18 +7,56 @@ import Link from "next/link";
 import { Button } from "./ui/button";
 import { useEffect, useRef, useState } from "react";
 import { IconLayoutDashboard, IconLogout } from "@tabler/icons-react";
+import axios from "axios";
+import { toast } from "sonner";
 
 export default function HomeClient({ email }: { email: string | null }) {
 
     const [open, setOpen] = useState(false);
 
     const handleLogin = () => {
+        toast.loading("Redirecting to login...", {
+            description: "Taking you to the authentication page.",
+        });
+
         window.location.href = "/api/auth/login";
-    }
+    };
+
+    const handleLogout = async () => {
+        const loadingToast = toast.loading("Signing you out...");
+
+        try {
+            const result = await axios.get("/api/auth/logout");
+
+            if (result.status === 200) {
+                toast.success("Logged out successfully", {
+                    id: loadingToast,
+                    description: "You have been signed out of your account.",
+                });
+
+                setTimeout(() => {
+                    window.location.href = "/";
+                }, 800);
+            } else {
+                toast.error("Logout failed", {
+                    id: loadingToast,
+                    description: "Unexpected response from server.",
+                });
+            }
+        } catch (error) {
+            toast.error("Logout failed", {
+                id: loadingToast,
+                description: "Something went wrong. Please try again.",
+            });
+
+            console.error("Logout failed:", error);
+        }
+    };
 
     const firstLetter = email ? email.charAt(0).toUpperCase() : "U";
 
     const popupRef = useRef<HTMLDivElement>(null);
+
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
             if (popupRef.current && !popupRef.current.contains(event.target as Node)) {
@@ -31,6 +69,8 @@ export default function HomeClient({ email }: { email: string | null }) {
             document.removeEventListener("mousedown", handleClickOutside);
         }
     }, [open]);
+
+
 
 
 
@@ -118,6 +158,7 @@ export default function HomeClient({ email }: { email: string | null }) {
                                                     variant="ghost"
                                                     className="justify-start gap-2 rounded-lg px-3 py-2 text-sm font-medium 
                      text-red-500 hover:bg-red-500/10 hover:text-red-600"
+                                                    onClick={handleLogout}
                                                 >
                                                     <IconLogout className="w-4 h-4" />
                                                     <span>Logout</span>
@@ -145,6 +186,9 @@ export default function HomeClient({ email }: { email: string | null }) {
                     </div>
                 </div>
             </motion.header>
+
+            {/* HERO */}
+
         </div>
     );
 }
