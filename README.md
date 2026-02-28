@@ -1,120 +1,182 @@
 # QuickPal
 
-AI-powered customer support chatbot that can be embedded into any website with a single script tag.  
-Built for speed, simplicity, and seamless integration.
+AI-powered customer support chatbot built as a full-stack multi-tenant SaaS platform.  
+Designed to be embeddable, scalable, and reusable for real-world production use.
 
 ---
 
-## 🚀 Overview
+## 🚀 Project Overview
 
-QuickPal helps businesses add an intelligent support assistant to their website in minutes.
+QuickPal is built from scratch as a production-ready AI SaaS system.
 
-It provides:
-- Instant AI-driven responses
-- Reduced customer support workload
-- Improved user engagement
-- Seamless integration across platforms
+It includes:
 
-Whether you use plain HTML, React, Next.js, or a CMS platform, QuickPal integrates effortlessly.
+- An embeddable chat widget (script/tag based)
+- Multi-tenant SaaS architecture (multiple websites, multiple users)
+- Authentication & organization management using Scalekit
+- Secure storage of chats, users, and configurations in MongoDB
+- Modern dashboard built with Next.js App Router
+- Deployment-ready architecture using Vercel
+- Fully reusable for clients or your own SaaS product
+
+This project is designed to simulate and build a real-world AI SaaS product.
 
 ---
 
-## ✨ Features
+## ✨ Core Features
 
-- Lightweight embeddable script
+- Lightweight embeddable JavaScript widget
 - AI-powered conversational responses
-- Fast and responsive UI
-- Easy integration (HTML, React, Next.js, WordPress)
-- Owner-based chatbot configuration
-- Secure authentication
-- Scalable backend architecture
-- Modern UI with smooth animations
+- Multi-tenant organization system
+- Role-based authentication
+- Secure chat storage
+- Owner-based chatbot isolation
+- Dashboard to manage configurations
+- Modern responsive UI
+- Production-ready deployment setup
 
 ---
 
-## 🛠 Tech Stack
+## 🛠 Tech Stack Used
 
-**Frontend**
-- Next.js
+**Frontend & Dashboard**
+- Next.js (App Router)
 - React
 - Tailwind CSS
 - shadcn UI
-- Motion
-- Lucide Icons
-
-**Backend**
-- Node.js
-- Express
+- Motion animations
 
 **Database**
 - MongoDB
 
+**Authentication & Organizations**
+- Scalekit (Auth + Organization management)
+
+**AI Integration**
+- LLM-based AI response generation
+
+**Deployment**
+- Vercel
+
 ---
 
-## 📌 How It Works
+## 🏗 Architecture Overview
 
-1. Website owner registers on QuickPal.
-2. A unique `ownerId` is generated.
-3. Owner embeds a small script into their website.
-4. The chatbot loads automatically and connects securely to the backend.
-5. Visitors can start chatting instantly.
+QuickPal follows a multi-tenant SaaS model.
+
+### Multi-Tenant Design
+
+Each organization:
+- Has its own users
+- Has its own chatbot configuration
+- Has isolated chat history
+- Has a unique `ownerId` for embedding
+
+This ensures complete separation between clients.
 
 ---
 
-## 🔌 Embedding QuickPal
+## 🔌 Embeddable Chat Widget
 
-Add this script to your website:
+The chatbot can be embedded into any website using a simple script tag.
 
 ```html
-<script 
-  src="https://your-domain.com/chatbot.js" 
+<script
+  src="https://your-domain.com/chatbot.js"
   data-owner-id="YOUR_OWNER_ID">
 </script>
 ```
 
-Place it just before the closing `</body>` tag.
-
-Once added, the chatbot will automatically initialize and attach to your site.
+The widget:
+- Injects itself into the page
+- Connects securely to backend APIs
+- Loads configuration dynamically
+- Stores conversations in MongoDB
 
 ---
 
-## ⚛ React / Next.js Integration Example
+## ⚛ Next.js Integration Example
 
 ```javascript
 import { useEffect } from "react";
 
-useEffect(() => {
-  const script = document.createElement("script");
-  script.src = `${process.env.NEXT_PUBLIC_APP_URL}/chatbot.js`;
-  script.setAttribute("data-owner-id", ownerId);
-  script.async = true;
-  document.body.appendChild(script);
+export default function EmbedChat({ ownerId }) {
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = `${process.env.NEXT_PUBLIC_APP_URL}/chatbot.js`;
+    script.setAttribute("data-owner-id", ownerId);
+    script.async = true;
 
-  return () => {
-    document.body.removeChild(script);
-  };
-}, []);
+    document.body.appendChild(script);
+
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, [ownerId]);
+
+  return null;
+}
 ```
 
 ---
 
-## 🔐 Security
+## 🔐 Authentication & Organizations (Scalekit)
 
-- Owner-based chatbot isolation
-- Token-based authentication
-- Environment-based configuration
-- Production-ready secure deployment
+QuickPal uses Scalekit to:
+
+- Authenticate users securely
+- Manage organizations
+- Assign users to organizations
+- Control access to chatbot configurations
+- Enable SaaS-level multi-user management
 
 ---
 
-## 📈 Roadmap
+## 🌍 Deployment
 
-- Analytics dashboard
+QuickPal is fully deployable using Vercel.
+
+Deployment includes:
+
+- Frontend dashboard
+- Backend API routes
+- Serverless AI endpoints
+- Secure environment variables
+- Production-ready build setup
+
+---
+
+## 💡 Use Cases
+
+QuickPal is ideal for:
+
+- SaaS customer support
+- Startup & landing pages
+- E-commerce websites
+- Portfolio & business websites
+- Agency client projects
+
+---
+
+## 🔒 Security Highlights
+
+- Organization-level data isolation
+- Token-based authentication
+- Secure API routes
+- Server-side validation
+- Production deployment best practices
+
+---
+
+## 📈 Future Improvements
+
+- AI analytics dashboard
+- Chat insights & reporting
 - Multi-language support
-- AI training customization
+- Custom AI training
 - Webhook integrations
-- Role-based access control
 - White-label support
+- Subscription billing integration
 
 ---
 
@@ -122,27 +184,15 @@ useEffect(() => {
 
 Contributions are welcome.
 
-1. Fork the repository  
-2. Create your feature branch (`git checkout -b feature-name`)  
-3. Commit your changes (`git commit -m "Add feature"`)  
-4. Push to your branch (`git push origin feature-name`)  
-5. Open a Pull Request  
-
----
-
-## 📄 License
-
-This project is licensed under the MIT License.
+1. Fork the repository
+2. Create a feature branch
+3. Commit changes
+4. Push to your branch
+5. Open a Pull Request
 
 ---
 
 ## ⭐ Support
 
-If you find QuickPal useful, consider giving it a star on GitHub.  
+If you find QuickPal useful, consider giving it a star on GitHub.
 It helps the project grow and reach more developers.
-
----
-
-## 👨‍💻 Author
-
-Built with focus on performance, clean architecture, and developer experience.
