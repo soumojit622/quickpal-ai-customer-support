@@ -1,7 +1,7 @@
 import { cookies } from "next/headers";
 import { scalekit } from "./scalekit";
 
-export async function getSession(request: unknown) {
+export async function getSession() {
   const session = await cookies();
 
   const token = session.get("access_token")?.value;

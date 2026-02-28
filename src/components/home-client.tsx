@@ -1,14 +1,14 @@
 "use client";
 
 import { ModeToggle } from "@/components/mode-toggle";
+import { IconLayoutDashboard, IconLogout } from "@tabler/icons-react";
+import axios from "axios";
 import { AnimatePresence, motion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
-import { Button } from "./ui/button";
 import { useEffect, useRef, useState } from "react";
-import { IconLayoutDashboard, IconLogout } from "@tabler/icons-react";
-import axios from "axios";
 import { toast } from "sonner";
+import { Button } from "./ui/button";
 
 export default function HomeClient({ email }: { email: string | null }) {
 
@@ -54,6 +54,7 @@ export default function HomeClient({ email }: { email: string | null }) {
     };
 
     const firstLetter = email ? email.charAt(0).toUpperCase() : "U";
+
 
     const popupRef = useRef<HTMLDivElement>(null);
 
@@ -136,11 +137,23 @@ export default function HomeClient({ email }: { email: string | null }) {
                                             exit={{ opacity: 0, y: 8, scale: 0.98 }}
                                             transition={{ duration: 0.18, ease: "easeOut" }}
                                             className="absolute right-0 mt-3 w-52 
-                 rounded-xl border border-border/50 
-                 bg-background/95 backdrop-blur-xl 
-                 shadow-xl p-2"
+    rounded-xl border border-border/50 
+    bg-background/95 backdrop-blur-xl 
+    shadow-xl p-2"
                                         >
                                             <div className="flex flex-col gap-1">
+
+                                                {/* User Info */}
+                                                <div className="px-3 py-3 rounded-lg bg-muted/40 border border-border/40">
+                                                    <p className="text-[11px] font-medium uppercase tracking-wide text-muted-foreground/70 mb-1">
+                                                        Signed in as
+                                                    </p>
+                                                    <p className="text-sm font-medium text-foreground truncate">
+                                                        {email}
+                                                    </p>
+                                                </div>
+
+                                                <div className="h-px bg-border/50 my-1" />
 
                                                 {/* Dashboard */}
                                                 <Button
@@ -160,7 +173,7 @@ export default function HomeClient({ email }: { email: string | null }) {
                                                 <Button
                                                     variant="ghost"
                                                     className="justify-start gap-2 rounded-lg px-3 py-2 text-sm font-medium 
-                     text-red-500 hover:bg-red-500/10 hover:text-red-600"
+        text-red-500 hover:bg-red-500/10 hover:text-red-600"
                                                     onClick={handleLogout}
                                                 >
                                                     <IconLogout className="w-4 h-4" />

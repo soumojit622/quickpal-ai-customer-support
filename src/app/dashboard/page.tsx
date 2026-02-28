@@ -1,7 +1,12 @@
-import React from 'react'
+import DashboardClient from '@/components/dashboard-client'
+import { getSession } from '@/lib/getSession'
 
-export default function DashboardPage() {
+export default async function DashboardPage() {
+  const session = await getSession()
+
   return (
-    <div>DashboardPage</div>
+    <>
+      <DashboardClient ownerId={session?.user?.id || "default"} />
+    </>
   )
 }
