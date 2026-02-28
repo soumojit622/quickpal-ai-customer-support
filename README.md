@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🚀 QuickPal
+# QuickPal
 
 ### AI-Powered Customer Support Chatbot  
 **Full-Stack • Multi-Tenant SaaS • Production-Ready**
