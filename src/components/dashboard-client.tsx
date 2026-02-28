@@ -15,7 +15,6 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { ModeToggle } from "./mode-toggle";
 import { Button } from "./ui/button";
-import { Settings } from "lucide-react";
 
 export default function DashboardClient({ ownerId }: { ownerId: string }) {
     const [businessName, setBusinessName] = useState("");
@@ -128,10 +127,10 @@ export default function DashboardClient({ ownerId }: { ownerId: string }) {
                     initial={{ opacity: 0, y: 12 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3 }}
-                    className="w-full max-w-3xl rounded-3xl border border-border/60 bg-card/80 backdrop-blur-xl shadow-2xl"
+                    className="w-full max-w-3xl"
                 >
                     {/* Header */}
-                    <div className="px-10 pt-10 pb-8 border-b border-border/50">
+                    <div className="pt-10 pb-8 border-b border-border/50">
                         <div className="flex items-center gap-3">
                             <div className="p-2 rounded-xl bg-primary/10 text-primary">
                                 <IconSettings className="w-5 h-5" />
@@ -147,7 +146,7 @@ export default function DashboardClient({ ownerId }: { ownerId: string }) {
                         </div>
                     </div>
 
-                    <div className="px-10 py-10 space-y-12">
+                    <div className="py-10 space-y-12">
                         {/* Business Details */}
                         <section className="space-y-6">
                             <div className="flex items-center gap-3">
@@ -201,7 +200,7 @@ export default function DashboardClient({ ownerId }: { ownerId: string }) {
                             </div>
 
                             <textarea
-                                rows={6}
+                                rows={13}
                                 placeholder="Provide product details, service information, refund policies, delivery rules, or any guidelines the chatbot should follow."
                                 className="w-full rounded-xl border border-input bg-background/70 px-4 py-3 text-sm shadow-sm focus:ring-2 focus:ring-primary/40 focus:border-primary transition resize-none"
                                 value={knowledge}
@@ -210,8 +209,7 @@ export default function DashboardClient({ ownerId }: { ownerId: string }) {
                         </section>
 
                         {/* Footer */}
-                        <div className="pt-6 flex items-center justify-start gap-4">
-                            {/* Save Button */}
+                        <div className="pt-6 flex items-center gap-4">
                             <Button
                                 onClick={handleSettings}
                                 disabled={loading}
@@ -230,21 +228,18 @@ export default function DashboardClient({ ownerId }: { ownerId: string }) {
                                 )}
                             </Button>
 
-                            {/* Saved Message */}
                             {saved && (
                                 <motion.div
                                     initial={{ opacity: 0, y: 6 }}
                                     animate={{ opacity: 1, y: 0 }}
-                                    exit={{ opacity: 0, y: 6 }}
-                                    transition={{ type: "spring", stiffness: 300, damping: 25, duration: 0.3 }}
-                                    className="inline-flex items-center gap-2 px-4 py-1.5 text-sm font-medium text-green-800 bg-green-50 border border-green-200 shadow-sm"
+                                    transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                                    className="inline-flex items-center gap-2 px-4 py-1.5 text-sm font-medium text-green-800 bg-green-50 border border-green-200 shadow-sm rounded-lg"
                                 >
                                     <IconCheck className="w-4 h-4 text-green-600" />
                                     <span>Settings Saved</span>
                                 </motion.div>
                             )}
                         </div>
-
                     </div>
                 </motion.div>
             </div>
