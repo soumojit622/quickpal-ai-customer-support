@@ -109,7 +109,11 @@ export default function DashboardClient({ ownerId }: { ownerId: string }) {
                         <div className="flex items-center gap-3">
                             <ModeToggle />
 
-                            <Button variant="outline">Embed Chatbot</Button>
+                            <Link href="/embed">
+                                <Button variant="outline">
+                                    Embed Chatbot
+                                </Button>
+                            </Link>
                         </div>
                     </div>
                 </div>
