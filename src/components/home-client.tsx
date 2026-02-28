@@ -8,6 +8,18 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
+import CTASection from "./landing/CTASection";
+import FAQ from "./landing/FAQ";
+import FeaturesGrid from "./landing/FeaturesGrid";
+import Footer from "./landing/Footer";
+import HeroSection from "./landing/HeroSection";
+import HowItWorks from "./landing/HowItWorks";
+import Integrations from "./landing/Integrations";
+import LiveDemo from "./landing/LiveDemo";
+import Pricing from "./landing/Pricing";
+import Stats from "./landing/Stats";
+import Testimonials from "./landing/Testimonials";
+import TrustedBy from "./landing/TrustedBy";
 import { Button } from "./ui/button";
 
 export default function HomeClient({ email }: { email: string | null }) {
@@ -70,10 +82,6 @@ export default function HomeClient({ email }: { email: string | null }) {
             document.removeEventListener("mousedown", handleClickOutside);
         }
     }, [open]);
-
-
-
-
 
     return (
         <div className="min-h-screen overflow-x-hidden">
@@ -204,7 +212,20 @@ export default function HomeClient({ email }: { email: string | null }) {
             </motion.header>
 
             {/* HERO */}
-
+            <main className="min-h-screen">
+                <HeroSection />
+                <TrustedBy />
+                <FeaturesGrid />
+                <HowItWorks />
+                <LiveDemo />
+                <Stats />
+                <Testimonials />
+                <Integrations />
+                <Pricing />
+                <FAQ />
+                <CTASection />
+            </main>
+            <Footer />
         </div>
     );
 }
