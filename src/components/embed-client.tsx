@@ -1,5 +1,6 @@
 "use client"
 import {
+    IconCheck,
     IconChecklist,
     IconCode,
     IconCopy,
@@ -131,11 +132,27 @@ export default function EmbedClient({ ownerId }: { ownerId: string | undefined }
                             <Button
                                 size="sm"
                                 onClick={copyToClipboard}
-                                variant="secondary"
-                                className="rounded-lg flex items-center gap-2"
+                                variant="outline"
+                                className="relative rounded-xl px-4 h-9 flex items-center gap-2 
+             border-border/60 bg-background/70 
+             hover:bg-muted/60 hover:border-primary/40
+             transition-all duration-200"
                             >
-                                <IconCopy size={16} />
-                                {copied ? "Copied" : "Copy Code"}
+                                {copied ? (
+                                    <>
+                                        <IconCheck className="w-4 h-4 text-green-600" />
+                                        <span className="text-sm font-medium text-green-600">
+                                            Copied!!!
+                                        </span>
+                                    </>
+                                ) : (
+                                    <>
+                                        <IconCopy className="w-4 h-4 text-muted-foreground" />
+                                        <span className="text-sm font-medium">
+                                            Copy Code
+                                        </span>
+                                    </>
+                                )}
                             </Button>
                         </div>
 
