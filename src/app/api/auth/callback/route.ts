@@ -33,7 +33,7 @@ export async function GET(request: NextRequest) {
     response.cookies.set("access_token", session.accessToken, {
       httpOnly: true,
       // TODO: Set secure to true in production and ensure your app is served over HTTPS
-      secure: false, // Set to true in production
+      secure: true, // Set to true in production
       sameSite: "lax",
       maxAge: 60 * 60 * 24 * 7, // 7 days
       path: "/",
