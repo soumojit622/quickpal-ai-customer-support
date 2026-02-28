@@ -1,36 +1,148 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# QuickPal
 
-## Getting Started
+AI-powered customer support chatbot that can be embedded into any website with a single script tag.  
+Built for speed, simplicity, and seamless integration.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 🚀 Overview
+
+QuickPal helps businesses add an intelligent support assistant to their website in minutes.
+
+It provides:
+- Instant AI-driven responses
+- Reduced customer support workload
+- Improved user engagement
+- Seamless integration across platforms
+
+Whether you use plain HTML, React, Next.js, or a CMS platform, QuickPal integrates effortlessly.
+
+---
+
+## ✨ Features
+
+- Lightweight embeddable script
+- AI-powered conversational responses
+- Fast and responsive UI
+- Easy integration (HTML, React, Next.js, WordPress)
+- Owner-based chatbot configuration
+- Secure authentication
+- Scalable backend architecture
+- Modern UI with smooth animations
+
+---
+
+## 🛠 Tech Stack
+
+**Frontend**
+- Next.js
+- React
+- Tailwind CSS
+- shadcn UI
+- Motion
+- Lucide Icons
+
+**Backend**
+- Node.js
+- Express
+
+**Database**
+- MongoDB
+
+---
+
+## 📌 How It Works
+
+1. Website owner registers on QuickPal.
+2. A unique `ownerId` is generated.
+3. Owner embeds a small script into their website.
+4. The chatbot loads automatically and connects securely to the backend.
+5. Visitors can start chatting instantly.
+
+---
+
+## 🔌 Embedding QuickPal
+
+Add this script to your website:
+
+```html
+<script 
+  src="https://your-domain.com/chatbot.js" 
+  data-owner-id="YOUR_OWNER_ID">
+</script>
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Place it just before the closing `</body>` tag.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Once added, the chatbot will automatically initialize and attach to your site.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## ⚛ React / Next.js Integration Example
 
-To learn more about Next.js, take a look at the following resources:
+```javascript
+import { useEffect } from "react";
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+useEffect(() => {
+  const script = document.createElement("script");
+  script.src = `${process.env.NEXT_PUBLIC_APP_URL}/chatbot.js`;
+  script.setAttribute("data-owner-id", ownerId);
+  script.async = true;
+  document.body.appendChild(script);
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+  return () => {
+    document.body.removeChild(script);
+  };
+}, []);
+```
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🔐 Security
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Owner-based chatbot isolation
+- Token-based authentication
+- Environment-based configuration
+- Production-ready secure deployment
+
+---
+
+## 📈 Roadmap
+
+- Analytics dashboard
+- Multi-language support
+- AI training customization
+- Webhook integrations
+- Role-based access control
+- White-label support
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome.
+
+1. Fork the repository  
+2. Create your feature branch (`git checkout -b feature-name`)  
+3. Commit your changes (`git commit -m "Add feature"`)  
+4. Push to your branch (`git push origin feature-name`)  
+5. Open a Pull Request  
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License.
+
+---
+
+## ⭐ Support
+
+If you find QuickPal useful, consider giving it a star on GitHub.  
+It helps the project grow and reach more developers.
+
+---
+
+## 👨‍💻 Author
+
+Built with focus on performance, clean architecture, and developer experience.
