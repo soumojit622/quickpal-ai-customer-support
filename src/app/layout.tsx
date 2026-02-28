@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     icon: "/logo.svg",
   },
   other: {
-    github: "https://github.com/yourusername/quickpal",
+    github: "https://github.com/soumojit622/quickpal-ai-customer-support",
   },
 };
 

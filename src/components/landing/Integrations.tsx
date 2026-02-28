@@ -1,15 +1,56 @@
 import { motion } from "motion/react";
-import { Code, Puzzle, Webhook, FileCode } from "lucide-react";
+import {
+  IconBrandJavascript,
+  IconBrandReact,
+  IconBrandWordpress,
+  IconBrandSpotify,
+  IconBrandWebflow,
+  IconBrandSlack,
+  IconApi,
+  IconBrandZapier,
+} from "@tabler/icons-react";
 
 const integrations = [
-  { icon: Code, name: "HTML / JavaScript", description: "Single script tag embed" },
-  { icon: FileCode, name: "React / Next.js", description: "npm package & component" },
-  { icon: Puzzle, name: "WordPress", description: "One-click plugin install" },
-  { icon: Webhook, name: "Shopify", description: "App store integration" },
-  { icon: Code, name: "Webflow", description: "Custom code embed" },
-  { icon: Puzzle, name: "Slack", description: "Internal support bot" },
-  { icon: Webhook, name: "REST API", description: "Full API access" },
-  { icon: FileCode, name: "Zapier", description: "1000+ app connections" },
+  {
+    icon: IconBrandJavascript,
+    name: "HTML / JavaScript",
+    description: "Single script tag embed",
+  },
+  {
+    icon: IconBrandReact,
+    name: "React / Next.js",
+    description: "npm package & component",
+  },
+  {
+    icon: IconBrandWordpress,
+    name: "WordPress",
+    description: "One-click plugin install",
+  },
+  {
+    icon: IconBrandSpotify,
+    name: "Spotify",
+    description: "App store integration",
+  },
+  {
+    icon: IconBrandWebflow,
+    name: "Webflow",
+    description: "Custom code embed",
+  },
+  {
+    icon: IconBrandSlack,
+    name: "Slack",
+    description: "Internal support bot",
+  },
+  {
+    icon: IconApi,
+    name: "REST API",
+    description: "Full API access",
+  },
+  {
+    icon: IconBrandZapier,
+    name: "Zapier",
+    description: "1000+ app connections",
+  },
 ];
 
 const Integrations = () => {
@@ -23,7 +64,9 @@ const Integrations = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <p className="text-sm font-semibold text-primary uppercase tracking-wider mb-3">Integrations</p>
+          <p className="text-sm font-semibold text-primary uppercase tracking-wider mb-3">
+            Integrations
+          </p>
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
             Works Where You Work
           </h2>
@@ -47,10 +90,15 @@ const Integrations = () => {
                 whileHover={{ rotate: 10 }}
                 className="w-10 h-10 rounded-lg bg-accent flex items-center justify-center mb-3"
               >
-                <item.icon className="w-5 h-5 text-primary" />
+                <item.icon className="w-5 h-5 text-primary" stroke={1.6} />
               </motion.div>
-              <p className="text-sm font-semibold text-foreground">{item.name}</p>
-              <p className="text-xs text-muted-foreground mt-1">{item.description}</p>
+
+              <p className="text-sm font-semibold text-foreground">
+                {item.name}
+              </p>
+              <p className="text-xs text-muted-foreground mt-1">
+                {item.description}
+              </p>
             </motion.div>
           ))}
         </div>
